@@ -1,0 +1,465 @@
+{
+  users(
+    filter: {
+    }
+  ) {
+    rows {
+      id
+      email
+      password
+      is_email_verified
+      email_verified_timestamp
+      deposit_no
+      ceased_at
+      is_ban
+      ban_timestamp
+
+      kyc_submitted_timestamp
+      kyc_approved_timestamp
+
+      user_status_id
+      user_type_id
+      user_risk_clasification_id
+      kyc_level_id
+      kyc_status_id
+      deleted_at
+      updated_at
+      created_at
+      userInfo {
+        id
+        nickname
+        salutation
+        firstname
+        middlename
+        lastname
+        dob
+        gender
+        tel_no
+        mobile_no
+
+        new_ic
+        old_ic
+        passport_no
+        passport_issued_country_cca3
+
+        address_1
+        address_2
+        postal_code
+        country_cca3
+        state_id
+
+        correspondence_address_1
+        correspondence_address_2
+        correspondence_postal_code
+        correspondence_country_cca3
+        correspondence_state_id
+
+        nationality
+        is_local_resident
+        organization_name
+        business_reg_num
+
+        ic_drive_passport_attachment
+        ic_drive_passport_attachment_back
+        ic_drive_passport_selfie_attachment
+        util_bank_statement_attachment
+
+        is_political_exposed_person
+        agree_partnership
+        newsletter
+
+        user_id
+
+        deleted_at
+        updated_at
+        created_at
+      }
+      marketplaceUserSetting {
+        id
+        twofa_secret
+        twofa_is_enabled
+        twofa_enabled_date
+        twofa_disabled_date
+        deleted_at
+      }
+      tradingAccount {
+        id
+        name
+        account_no
+        tradingAccountPlatform {
+          id
+          code
+          name
+        }
+        tradingAccountStatus {
+          id
+          code
+          name
+        }
+      }
+    }
+  }
+}
+
+mutation {
+  createUser(
+    input : {
+      email: "andricsee.dev3@gmail.com"
+      password: "abc123"
+      trading_account_platform_id:marketplace
+      user_type_id: corporate
+    }
+  ) {
+    id
+    tradingAccount {
+      id
+      name
+      account_no
+    }
+    userStatus {
+      id
+      name
+    }
+    userType {
+      id
+      name
+    }
+    userRiskClasification{
+      id
+      name
+    }
+    marketplaceUserSetting {
+      id
+      twofa_secret
+      twofa_is_enabled
+      twofa_enabled_date
+      twofa_disabled_date
+    }
+    kycLevel {
+      id
+      name
+    }
+    kycStatus {
+      id
+      name
+    }
+  }
+}
+
+
+# Write your query or mutation here
+mutation {
+  updateUser(
+    filter: {
+      id: {
+        eq: "3"
+      }
+    },
+    input: {
+      password: "abc123"
+      trading_account_platform_id: marketplace
+      kyc_status_id: verified
+      is_ban: true
+    }
+  ) {
+    rows {
+      id
+      email
+      password
+      is_email_verified
+      email_verified_timestamp
+      deposit_no
+      ceased_at
+      is_ban
+      ban_timestamp
+
+      kyc_submitted_timestamp
+      kyc_approved_timestamp
+
+      user_status_id
+      user_type_id
+      user_risk_clasification_id
+      kyc_level_id
+      kyc_status_id
+      deleted_at
+      updated_at
+      created_at
+      userInfo {
+        id
+        nickname
+        salutation
+        firstname
+        middlename
+        lastname
+        dob
+        gender
+        tel_no
+        mobile_no
+
+        new_ic
+        old_ic
+        passport_no
+        passport_issued_country_cca3
+
+        address_1
+        address_2
+        postal_code
+        country_cca3
+        state_id
+
+        correspondence_address_1
+        correspondence_address_2
+        correspondence_postal_code
+        correspondence_country_cca3
+        correspondence_state_id
+
+        nationality
+        is_local_resident
+        organization_name
+        business_reg_num
+
+        ic_drive_passport_attachment
+        ic_drive_passport_attachment_back
+        ic_drive_passport_selfie_attachment
+        util_bank_statement_attachment
+
+        is_political_exposed_person
+        agree_partnership
+        newsletter
+
+        user_id
+
+        deleted_at
+        updated_at
+        created_at
+      }
+      userSetting {
+        id
+        key
+        value
+      }
+      tradingAccount {
+        id
+        name
+        account_no
+      }
+      kycLevel {
+        id
+        name
+      }
+      kycStatus {
+        id
+        name
+      }
+    }
+    total
+    count
+  }
+}
+
+mutation {
+  deleteUser(
+    filter: {
+      id: {
+        eq: "3"
+      }
+    }
+  ) {
+    rows {
+      id
+      email
+      deleted_at
+      userInfo {
+        id
+        firstname
+        middlename
+        deleted_at
+      }
+      userSetting {
+        id
+        key
+        value
+        deleted_at
+      }
+      tradingAccount {
+        id
+        name
+        account_no
+        deleted_at
+      }
+      companyInfo {
+        id
+        company_name
+        deleted_at
+      }
+    }
+		total
+		count
+  }
+}
+
+mutation {
+  createTradingAccount(
+    input: {
+      name: "Sample Account"
+      trading_account_status_id: active
+      trading_account_platform_id:marketplace
+      user_id: 10
+    }
+  ) {
+    id
+    name
+    account_no
+    tradingAccountPlatform{
+      id
+      code
+      name
+    }
+    tradingAccountStatus{
+      id
+      code
+      name
+    }
+    user{
+      id
+      email
+      password
+    }
+  }
+}
+
+mutation {
+  updateTradingAccount(
+    filter: {
+      id: {
+        eq: "1"
+      }
+    }
+    input: {
+      name: "Sample nonoon"
+      trading_account_status_id: active
+      user_id: 10
+    }
+  ) {
+    rows{
+			name
+      deleted_at
+      tradingAccountPlatform{
+        id
+        code
+        name
+      }
+      tradingAccountStatus{
+        id
+        code
+        name
+      }
+      user{
+        id
+        email
+        password
+      }
+    }
+  }
+}
+
+mutation {
+  createMarketplaceUserSetting(
+    input: {
+      twofa_is_enabled: true
+      user_id: "7"
+    }
+  ) {
+    id
+    twofa_secret
+    twofa_is_enabled
+    twofa_enabled_date
+    twofa_disabled_date
+  }
+}
+
+# Write your query or mutation here
+mutation { 
+  updateMarketplaceUserSetting( 
+    filter: { 
+      id: { 
+        eq: "1" 
+      } 
+      user_id: { 
+        eq: "7" 
+      }
+    } 
+    input: { 
+      twofa_secret: "1234565"
+      twofa_is_enabled: true
+    } 
+  ) { 
+    rows { 
+      id
+      twofa_secret
+      twofa_is_enabled
+      twofa_enabled_date
+      twofa_disabled_date
+    } 
+  } 
+}
+
+mutation {
+  deleteMarketplaceUserSetting(
+    filter: {
+      id: {
+        eq: "47"
+      }
+    }
+  ) {
+    rows {
+      id
+      twofa_secret
+      twofa_is_enabled
+      twofa_enabled_date
+      twofa_disabled_date
+      deleted_at
+    }
+		total
+		count
+  }
+}
+
+{
+  bankAccounts(
+    filter: {}
+  ) {
+    rows {
+      id
+      account_no
+      bank_name
+      bank_swift_bic
+      bank_address_1
+      bank_address_2
+      bank_postal_code
+      bank_city
+      bank_country_cca3
+      bank_state_id
+      intermediary_bank_name
+      intermediary_bank_swift_bic
+      intermediary_bank_address_1
+      intermediary_bank_address_2
+      intermediary_bank_postal_code
+      intermediary_bank_city
+      intermediary_bank_state_id
+      intermediary_bank_country_cca3
+      intermediary_further_instruction
+      is_default
+      currency_iso
+      currency_code
+      currency_id
+      user {
+        id
+        email
+      }
+      deleted_at
+      created_at
+      updated_at
+  }
+  }
+}

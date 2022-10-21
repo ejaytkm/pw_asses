@@ -1,0 +1,50 @@
+{
+  "name": "express-user",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon -L ./bin/www",
+    "migrate": "npx sequelize-cli db:migrate",
+    "rollback:all": "npx sequelize-cli db:migrate:undo:all",
+    "rollback:once": "npx sequelize-cli db:migrate:undo"
+  },
+  "dependencies": {
+    "@onfido/api": "^1.0.0",
+    "apollo-server-express": "^2.9.3",
+    "app-root-path": "^2.2.1",
+    "aws-sdk": "^2.530.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^8.1.0",
+    "express": "~4.16.1",
+    "graphql": "^14.5.4",
+    "graphql-relay": "^0.6.0",
+    "graphql-s2s": "^0.20.2",
+    "graphql-scalars": "^1.0.1",
+    "graphql-sequelize": "^9.3.6",
+    "graphql-tools": "^4.0.5",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.27",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "multer-s3-transform": "^2.3.2",
+    "node-fetch": "^2.6.0",
+    "pg": "^7.12.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.18.4",
+    "sequelize-cli": "^5.5.1",
+    "sharp": "^0.23.0",
+    "uuid": "^3.3.3",
+    "validator": "^11.1.0",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
