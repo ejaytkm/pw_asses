@@ -1,16 +1,32 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express');
+const router = express.Router();
+const OauthController = require('../controllers/oauthcontroller');
+const OAuthServer = require('express-oauth-server');
 
-// const UserInfoModel = require('../database/models').UserInfo
-// const db = require('../database/models')
+router.oauth = new OAuthServer({
+    model: OauthController
+});
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  /* for (var i = 0; i < 100; i++) {
-    console.log(uuidv5("andricsee.dev" + i + "@gmail.com", uuidv4()));
-  }
-  */
-  res.render('index', { title: 'Express' })
-})
+    res.render('index', {title: 'Express'});
+});
 
-module.exports = router
+router.post('/oauth/token', router.oauth.token());
+router.post('/oauth/set_client', function (req, res, next) {
+    OauthController.setClient(req.body)
+        .then((client) => res.json(client))
+        .catch((error) => {
+            return next(error);
+        });
+});
+router.post('/oauth/signup', function (req, res, next) {
+    OauthController.setUser(req.body)
+        .then((user) => res.json(user))
+        .catch((error) => {
+            return next(error);
+        });
+});
+
+
+module.exports = router;

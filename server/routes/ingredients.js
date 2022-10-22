@@ -9,7 +9,6 @@ router.oauth = new OAuthServer({
 
 /* GET users listing. */
 router.get('/secret', router.oauth.authenticate(), function (req, res) {
-  res.json('Secret area');
 });
 
 module.exports = router

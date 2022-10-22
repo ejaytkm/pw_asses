@@ -33,26 +33,26 @@ input GeneralFilterInput {
   created_at: StringFilterInput,
 }
 
-input ApplicantFilterInput {
+input UserFilterInput {
   id: StringFilterInput,
-  user_id: StringFilterInput,
-  onfido_applicant_id: StringFilterInput,
-  email: StringFilterInput,
-  first_name: StringFilterInput,
-  last_name: StringFilterInput,
-  dob: StringFilterInput,
 
-  address_street: StringFilterInput,
-  address_town: StringFilterInput,
-  address_postcode: StringFilterInput,
-  address_country: StringFilterInput,
+  username: StringFilterInput,
+  passwords: StringFilterInput,
+  name: StringFilterInput,
+  user_type_id: StringFilterInput,
 
   deleted_at: StringFilterInput,
   updated_at: StringFilterInput,
   created_at: StringFilterInput,
 }
 
-input CheckFilterInput {
+input IngredientFilterInput {
   id: StringFilterInput,
+
+  name: StringFilterInput,
+
+  deleted_at: StringFilterInput,
+  updated_at: StringFilterInput,
+  created_at: StringFilterInput,
 }
 `

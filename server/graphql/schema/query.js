@@ -1,18 +1,17 @@
 module.exports = `
 type Query {
-  # --- User and User Info ---
-  applicants (
-    filter: ApplicantFilterInput,
+  users (
+    filter: UserFilterInput,
     perPage: Int,
     page: Int,
     sort: [[String]]
-  ) : ApplicantData
+  ) : UserData
 
-  checks (
-    filter: CheckFilterInput,
+  ingredients (
+    filter: IngredientFilterInput,
     perPage: Int,
     page: Int,
     sort: [[String]]
-  ) : CheckData
+  ) : IngredientData
 }
 `
