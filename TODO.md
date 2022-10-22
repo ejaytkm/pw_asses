@@ -4,9 +4,9 @@
 - ~~CRUD user - name, password via Oauth2.0~~
 - ~~Set up GRAPHQL~~
 - CRUD ingredient = create, read, update, delete
-- CRUD outlets =
-- CRUD user_outlets - admin/managers should be able to assign users to outlets =
-- CRUD ingredients_outlets - admin [create] manager [update,view], employee [view] =
+- CRUD outlets = create, read, update, delete
+- CRUD user_outlets - admin/managers should be able to assign users to outlets = create, read, update, delete
+- CRUD ingredients_outlets - admin [create] manager [update,view], employee [view] = create, read, update, delete
 - Complete Ouath middleware routes
 - ROLES ingredients =
 - ROLES outlets =
