@@ -29,6 +29,18 @@ module.exports = {
         allowNull: false
       },
 
+      value: {
+        address: {
+          type: Sequelize.TEXT
+        },
+      },
+
+      json_value: {
+        address: {
+          type: Sequelize.TEXT
+        },
+      },
+
       deleted_at: {
         type: Sequelize.DATE(6),
         allowNull: true,
