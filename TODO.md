@@ -8,22 +8,25 @@
 - CRUD user_outlets - admin/managers should be able to assign users to outlets = create, read, update, delete
 - CRUD ingredients_outlets - admin [create] manager [update,view], employee [view] = create, read, update, delete
 - Complete Ouath middleware routes
-
+==================================== (begin frontend - come back later if you have the time)
 - ROLES ingredients =
 - ROLES outlets =
 - ROLES user_outlets =
 - ROLES ingredients_outlets =
 - GPRAHL VALIDATIONS =
 - GPRAHL VALIDATIONS =
-- API to create new user =
+- API to admin to create new user = [ADMIN] or [SCRIPT-GENERATOR]
 - ~~SEEDER - outlets [hard coded into the system] =~~
 
 ## FRONTEND
 - LOGIN page =
 - SIGNUP page = please wait for your respective manager to assign you
-- INGREDIENTS page = admin [create>], manager [update> amount], user [view]
-- OUTLETS page = Admin can add outlets? admin can assign a manager to an outlet to location
-- GOOGLE_MAPS_API =
+- CRUD - INGREDIENTS page = admin [create>], manager [update> amount], user [view]
+- CRUD - OUTLETS page = Admin can add outlets? admin can assign a manager to an outlet to location - implement GOOGLE_MAPS_API
+- CRUD - USER_OUTLET page
+- CRUD - INGREDIENT_OUTPAGE page
+================================== (back to backend, complete "ROLES")
+- Handle error messages for ROLES
 
 # QUESTION
 Problem Statement &amp; Assignment
