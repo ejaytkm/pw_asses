@@ -1,8 +1,8 @@
 const AbstractQueryService = require('./abstracts/abstractquery')
 
-module.exports = class IngredientService extends AbstractQueryService {
+module.exports = class OutletService extends AbstractQueryService {
   constructor (models) {
-    const modelName = 'Ingredients'
+    const modelName = 'Outlets'
     const arrAssociateQuery = []
     super(models, modelName, arrAssociateQuery)
     this.models = models

@@ -10,4 +10,10 @@ type IngredientData {
   total: Int,
   count: Int
 }
+
+type OutletData {
+  rows: [Outlet],
+  total: Int,
+  count: Int
+}
 `

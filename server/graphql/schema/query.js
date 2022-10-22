@@ -13,5 +13,12 @@ type Query {
     page: Int,
     sort: [[String]]
   ) : IngredientData
+
+  outlets (
+    filter: OutletFilterInput,
+    perPage: Int,
+    page: Int,
+    sort: [[String]]
+  ) : OutletData
 }
 `

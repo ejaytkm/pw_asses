@@ -1,3 +1,4 @@
+const { filter } = require('lodash')
 const _ = require('lodash')
 const OptimizeQueryService = require('../optimizequery.js')
 
@@ -72,8 +73,6 @@ module.exports = class AbstractQueryService {
     const attributes = await this.convertAttrToStr(await objOptQueryServ.getAttributes())
     const queryFields = await objOptQueryServ.getQueryFields()
     const includes = []
-
-    console.log(attributes)
 
     for (let i = 0; i < arrAssocModelName.length; i++) {
       const assocModelName = arrAssocModelName[i].modelName

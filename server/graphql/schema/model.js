@@ -18,4 +18,17 @@ type Ingredient {
   deleted_at: String,
 }
 
+type Outlet {
+  id: String,
+
+  name: String,
+  address: String,
+  coordinate_x: String,
+  coordinate_y: String,
+
+  deleted_at: String,
+  updated_at: String,
+  created_at: String,
+}
+
 `

@@ -15,10 +15,10 @@ module.exports = {
       address: {
         type: Sequelize.TEXT
       },
-      coordinateX: {
+      coordinate_x: {
         type: Sequelize.STRING
       },
-      coordinateY: {
+      coordinate_y: {
         type: Sequelize.STRING
       },
 

@@ -6,13 +6,13 @@ module.exports = {
     return queryInterface.bulkInsert('outlets', [{
       name: 'Mid Valley',
       address: 'Lingkaran Syed Putra, Mid Valley City, 59200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur',
-      coordinateX: "3.117933",
-      coordinateY: "101.676847"
+      coordinate_x: "3.117933",
+      coordinate_y: "101.676847"
     }, {
       name: 'Pavillion',
       address: '168, Jln Bukit Bintang, Bukit Bintang, 55100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur',
-      coordinateX: "3.1492146",
-      coordinateY: "101.7135288"
+      coordinate_x: "3.1492146",
+      coordinate_y: "101.7135288"
     }], {});
   },
 

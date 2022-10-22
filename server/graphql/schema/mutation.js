@@ -3,28 +3,28 @@ type Mutation {
   createIngredient(
     input: IngredientInput!
   ): Ingredient!
+
+  updateIngredient(
+    filter: IngredientFilterInput,
+    input: IngredientInput!
+  ): Ingredient!
+
+  deleteIngredient(
+    filter: IngredientDeleteFilterInput!,
+  ): Ingredient!
+
+
+  createOutlet(
+    input: OutletInput!
+  ): Outlet!
+
+  updateOutlet(
+    filter: OutletFilterInput,
+    input: OutletInput!
+  ): Outlet!
+
+  deleteOutlet(
+    filter: OutletDeleteFilterInput!,
+  ): Outlet!
 }
 `
-
-// # --- Applicant ---
-// createApplicant(
-//   input: ApplicantInput!
-// ): Applicant!
-
-// updateApplicant(
-//   filter: ApplicantFilterInput,
-//   input: ApplicantInput!
-// ): Applicant!
-
-// requestApplicantToken(
-//   input: ApplicantTokenInput!
-// ): ApplicantToken!
-
-// # --- Checks ---
-// createCheck(
-//   input: CheckInput!
-// ): Check!
-
-// resaveDocumentData(
-//   input: ResaveDocumentInput!
-// ): Check!

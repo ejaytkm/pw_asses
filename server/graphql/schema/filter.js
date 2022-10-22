@@ -55,4 +55,26 @@ input IngredientFilterInput {
   updated_at: StringFilterInput,
   created_at: StringFilterInput,
 }
+
+input IngredientDeleteFilterInput {
+  id: StringFilterInput!,
+}
+
+input OutletFilterInput {
+  id: StringFilterInput,
+
+  name: StringFilterInput,
+  address: StringFilterInput,
+  coordinate_x: StringFilterInput,
+  coordinate_y: StringFilterInput,
+
+  deleted_at: StringFilterInput,
+  updated_at: StringFilterInput,
+  created_at: StringFilterInput,
+}
+
+input OutletDeleteFilterInput {
+  id: StringFilterInput!,
+}
+
 `

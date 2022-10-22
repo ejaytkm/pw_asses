@@ -3,16 +3,20 @@
 - ~~Build backend SQL~~
 - ~~CRUD user - name, password via Oauth2.0~~
 - ~~Set up GRAPHQL~~
-- CRUD ingredient = create, read, update, delete
-- CRUD outlets = create, read, update, delete
+- ~~CRUD ingredient = create, read, update, delete~~
+- ~~CRUD outlets = create, read, update, delete~~
 - CRUD user_outlets - admin/managers should be able to assign users to outlets = create, read, update, delete
 - CRUD ingredients_outlets - admin [create] manager [update,view], employee [view] = create, read, update, delete
 - Complete Ouath middleware routes
+
 - ROLES ingredients =
 - ROLES outlets =
 - ROLES user_outlets =
 - ROLES ingredients_outlets =
-- SEEDER - outlets [hard coded into the system] =
+- GPRAHL VALIDATIONS =
+- GPRAHL VALIDATIONS =
+- API to create new user =
+- ~~SEEDER - outlets [hard coded into the system] =~~
 
 ## FRONTEND
 - LOGIN page =
