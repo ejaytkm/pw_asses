@@ -16,4 +16,16 @@ type OutletData {
   total: Int,
   count: Int
 }
+
+type IngredientOutletData {
+  rows: [IngredientOutlet],
+  total: Int,
+  count: Int
+}
+
+type UserOutletData {
+  rows: [UserOutlet],
+  total: Int,
+  count: Int
+}
 `

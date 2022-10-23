@@ -3,6 +3,8 @@ const QueryFilter = require('../queryfilter')
 
 const IngredientService 		= require('../../services/ingredient')
 const OutletService 		= require('../../services/outlet')
+const IngredientOutletService 		= require('../../services/ingredientoutlet')
+const UserOutletService 		= require('../../services/useroutlet')
 
 module.exports = {
   // Users
@@ -40,7 +42,7 @@ module.exports = {
   // Outlets
   outlets: async (parent, args, { models }, info) => {
     const filterParam 	= QueryFilter.filter(args)
-    console.log(filterParam)
+    // console.log(filterParam)
     const serv = new OutletService(models)
     return await serv.getAll(filterParam, info)
       .then((filteredData) => {
@@ -52,7 +54,36 @@ module.exports = {
       })
   },
 
+  // Ingredient_Outlets
+  ingredientOutlets: async (parent, args, { models }, info) => {
+    const filterParam 	= QueryFilter.filter(args)
+    const serv = new IngredientOutletService(models)
+    return await serv.getAll(filterParam, info)
+      .then((filteredData) => {
+        // console.log("@filteredData", filteredData.rows[0])
+
+        return {
+          rows: filteredData.rows,
+          total: filteredData.count,
+          count: filteredData.rows.length
+        }
+      })
+  },
 
   // User_Outlets
-  // Ingredient_Outlets
+  userOutlets: async (parent, args, { models }, info) => {
+    const filterParam 	= QueryFilter.filter(args)
+    const serv = new UserOutletService(models)
+    return await serv.getAll(filterParam, info)
+      .then((filteredData) => {
+        // console.log("@filteredData", filteredData.rows[0])
+
+        return {
+          rows: filteredData.rows,
+          total: filteredData.count,
+          count: filteredData.rows.length
+        }
+      })
+  },
+
 }

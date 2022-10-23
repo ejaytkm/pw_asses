@@ -28,19 +28,29 @@ class OptimizeQueryService {
   }
 
   getSubModelQueryField (subQueryFields, subModelName, subModelNameAlias) {
+    console.log(
+      "getSubModelQueryField",
+      subQueryFields[subModelNameAlias],
+      subModelName
+    )
+
     return subQueryFields[subModelNameAlias].fieldsByTypeName[subModelName]
   }
 
   getSubModelAttributes (subQueryFields, subModelName, subModelNameAlias) {
     if (_.has(subQueryFields, subModelNameAlias)) {
       const queryFields = this.getSubModelQueryField(subQueryFields, subModelName, subModelNameAlias)
+
+      // console.log("SUB-queryFields", queryFields)
+
       return this.getFields(queryFields)
     }
+
     return null
   }
 
   getFields (queryFields) {
-    console.log(queryFields)
+    // console.log(queryFields)
 
     const attributes = []
     for (const key in queryFields) {

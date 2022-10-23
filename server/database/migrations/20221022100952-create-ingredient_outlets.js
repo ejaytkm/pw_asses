@@ -30,15 +30,11 @@ module.exports = {
       },
 
       value: {
-        address: {
-          type: Sequelize.TEXT
-        },
+        type: Sequelize.TEXT
       },
 
       json_value: {
-        address: {
-          type: Sequelize.TEXT
-        },
+        type: Sequelize.JSONB
       },
 
       deleted_at: {

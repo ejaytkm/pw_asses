@@ -5,8 +5,8 @@
 - ~~Set up GRAPHQL~~
 - ~~CRUD ingredient = create, read, update, delete~~
 - ~~CRUD outlets = create, read, update, delete~~
-- CRUD user_outlets - admin/managers should be able to assign users to outlets = create, read, update, delete
-- CRUD ingredients_outlets - admin [create] manager [update,view], employee [view] = create, read, update, delete
+~~- CRUD user_outlets - admin/managers should be able to assign users to outlets = create, read, update, delete~~
+~~- CRUD ingredients_outlets - admin [create] manager [update,view], employee [view] = create, read, update, delete~~
 - Complete Ouath middleware routes
 ==================================== (begin frontend - come back later if you have the time)
 - ROLES ingredients =
@@ -15,18 +15,26 @@
 - ROLES ingredients_outlets =
 - GPRAHL VALIDATIONS =
 - GPRAHL VALIDATIONS =
-- API to admin to create new user = [ADMIN] or [SCRIPT-GENERATOR]
+- API to admin to create new user = [ADMIN] or [SCRIPT-GENERATOR] - seeder to generate new admin
 - ~~SEEDER - outlets [hard coded into the system] =~~
-
+cv
 ## FRONTEND
-- LOGIN page =
 - SIGNUP page = please wait for your respective manager to assign you
-- CRUD - INGREDIENTS page = admin [create>], manager [update> amount], user [view]
+- LOGIN page = ANY-USER
+- CRUD - INGREDIENTS page = admin [>create], manager [>update amount], user [view]
 - CRUD - OUTLETS page = Admin can add outlets? admin can assign a manager to an outlet to location - implement GOOGLE_MAPS_API
 - CRUD - USER_OUTLET page
 - CRUD - INGREDIENT_OUTPAGE page
 ================================== (back to backend, complete "ROLES")
 - Handle error messages for ROLES
+
+
+## TOUCHUPS
+- Touch up read.me following community standards
+- -
+
+## Important
+- DEPLOY BEFORE 11:49PM
 
 # QUESTION
 Problem Statement &amp; Assignment

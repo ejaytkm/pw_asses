@@ -2,7 +2,7 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  const Ingredients = sequelize.define('Ingredients', {
+  const Ingredient = sequelize.define('Ingredient', {
     name: DataTypes.STRING,
 
     deleted_at: DataTypes.DATE(6),
@@ -14,8 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'ingredients'
   })
 
-  Ingredients.associate = function (models) {
+  Ingredient.associate = function (models) {
+    Ingredient.hasMany(models.IngredientOutlet, {
+      foreignKey: 'ingredient_id',
+      as: 'ingredientData',
+    })
   }
 
-  return Ingredients
+  return Ingredient
 };

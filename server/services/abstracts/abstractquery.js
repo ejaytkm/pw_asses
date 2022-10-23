@@ -13,6 +13,9 @@ module.exports = class AbstractQueryService {
       throw new Error('Model is null.')
     }
 
+    // console.log('@@@@@', this._objModels)
+    // console.log('@@@@@', this._strModelName)
+
     if (typeof this._objModels[this._strModelName] === 'undefined') {
       throw new Error('Model "' + this._strModelName + '" not found.')
     }
@@ -34,6 +37,8 @@ module.exports = class AbstractQueryService {
   async getAll(filterParam, info) {
     this.validateInfo(info);
     let assocAndAttr = await this.getAsocAndAttributes(info, this._arrAssociateQuery);
+
+    console.log("@getAll ", assocAndAttr.includes)
 
     return await this._objModels[this._strModelName].findAndCountAll({
       where     : filterParam.filter,
@@ -74,17 +79,23 @@ module.exports = class AbstractQueryService {
     const queryFields = await objOptQueryServ.getQueryFields()
     const includes = []
 
+    // console.log("@getAsocAndAttributes", arrAssocModelName)
+
     for (let i = 0; i < arrAssocModelName.length; i++) {
       const assocModelName = arrAssocModelName[i].modelName
       const assocModelNameAlias = arrAssocModelName[i].modelNameAlias
 
-      // console.log(queryFields);
       if (_.has(queryFields, assocModelNameAlias)) {
         const assocAttributes = await objOptQueryServ.getSubModelAttributes(queryFields, assocModelName, assocModelNameAlias)
+        console.log('@assocAttributes', assocAttributes)
+
         if (assocAttributes !== null) {
           includes.push(await this.getEagerLoad(assocModelName, assocModelNameAlias, assocAttributes))
         }
       }
+
+      // console.log("@test", queryFields);
+      // console.log("@test", assocModelNameAlias);
     }
 
     return {

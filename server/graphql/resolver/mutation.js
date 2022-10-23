@@ -1,8 +1,10 @@
 const { ApolloError } = require('apollo-server-express')
 const QueryFilter = require('../queryfilter')
 
-const IngredientService 		= require('../../services/ingredient')
-const OutletService 		= require('../../services/outlet')
+const IngredientService = require('../../services/ingredient')
+const OutletService = require('../../services/outlet')
+const IngredientOutletService = require('../../services/ingredientoutlet')
+const UserOutletService = require('../../services/useroutlet')
 
 const moment = require('moment-timezone')
 const { filter } = require('lodash')
@@ -96,5 +98,76 @@ module.exports = {
   },
 
   // IngredientOutlets
+  createIngredientOutlet: async (parent, args, { models }, info) => {
+    const serv = new IngredientOutletService(models)
+    return await serv.create(args.input)
+      .then(filteredData => {
+        return filteredData.dataValues
+      })
+  },
+
+  updateIngredientOutlet: async (parent, args, { models }, info) => {
+    // Add additional security if necessary, for now - keeping in really accessible but based on ROLES
+    const filterParam 	= QueryFilter.filter(args)
+
+    const serv = new IngredientOutletService(models)
+    return await serv.update(args.input, filterParam)
+      .then(filteredData => {
+        return filteredData[0]
+      })
+      .then(async (updateId) => {
+        return await serv.getOne(filterParam, info)
+      })
+  },
+
+  deleteIngredientOutlet: async (parent, args, { models }, info) => {
+    // Add additional security if necessary, for now - keeping in really accessible but based on ROLES
+    const filterParam 	= QueryFilter.filter(args)
+
+    const serv = new IngredientOutletService(models)
+    return await serv.delete(filterParam)
+      .then(filteredData => {
+        return filteredData[0]
+      })
+      .then(async () => {
+        return await serv.getOne(filterParam, info)
+      })
+  },
+
   // UserOutlets
+  createUserOutlet: async (parent, args, { models }, info) => {
+    const serv = new UserOutletService(models)
+    return await serv.create(args.input)
+      .then(filteredData => {
+        return filteredData.dataValues
+      })
+  },
+
+  updateUserOutlet: async (parent, args, { models }, info) => {
+    // Add additional security if necessary, for now - keeping in really accessible but based on ROLES
+    const filterParam 	= QueryFilter.filter(args)
+
+    const serv = new UserOutletService(models)
+    return await serv.update(args.input, filterParam)
+      .then(filteredData => {
+        return filteredData[0]
+      })
+      .then(async (updateId) => {
+        return await serv.getOne(filterParam, info)
+      })
+  },
+
+  deleteUserOutlet: async (parent, args, { models }, info) => {
+    // Add additional security if necessary, for now - keeping in really accessible but based on ROLES
+    const filterParam 	= QueryFilter.filter(args)
+
+    const serv = new UserOutletService(models)
+    return await serv.delete(filterParam)
+      .then(filteredData => {
+        return filteredData[0]
+      })
+      .then(async () => {
+        return await serv.getOne(filterParam, info)
+      })
+  },
 }

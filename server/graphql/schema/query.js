@@ -20,5 +20,19 @@ type Query {
     page: Int,
     sort: [[String]]
   ) : OutletData
+
+  ingredientOutlets (
+    filter: IngredientOutletFilterInput,
+    perPage: Int,
+    page: Int,
+    sort: [[String]]
+  ) : IngredientOutletData
+
+  userOutlets (
+    filter: UserOutletFilterInput,
+    perPage: Int,
+    page: Int,
+    sort: [[String]]
+  ) : UserOutletData
 }
 `

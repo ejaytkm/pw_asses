@@ -77,4 +77,37 @@ input OutletDeleteFilterInput {
   id: StringFilterInput!,
 }
 
+
+input IngredientOutletFilterInput {
+  id: StringFilterInput,
+
+  ingredient_id: StringFilterInput,
+  outlet_id: StringFilterInput,
+  value: StringFilterInput,
+  json_value: StringFilterInput,
+
+  deleted_at: StringFilterInput,
+  updated_at: StringFilterInput,
+  created_at: StringFilterInput,
+}
+
+input IngredientOutletDeleteFilterInput {
+  id: StringFilterInput!,
+}
+
+input UserOutletFilterInput {
+  id: StringFilterInput,
+
+  user_id: StringFilterInput,
+  outlet_id: StringFilterInput,
+
+  deleted_at: StringFilterInput,
+  updated_at: StringFilterInput,
+  created_at: StringFilterInput,
+}
+
+input UserOutletDeleteFilterInput {
+  id: StringFilterInput!,
+}
+
 `

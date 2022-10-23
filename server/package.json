@@ -6,9 +6,10 @@
   "scripts": {
     "start": "nodemon -L ./bin/www",
     "migrate": "npx sequelize-cli db:migrate",
-    "rollback:all": "npx sequelize-cli db:migrate:undo:all",
+    "rollback:all": "npx sequelize-cli db:migrate:undo:all && npm run seed:undo",
     "rollback:once": "npx sequelize-cli db:migrate:undo",
-    "seed": "npx sequelize-cli db:seed:all"
+    "seed": "npx sequelize-cli db:seed:all",
+    "seed:undo": "npx sequelize-cli db:seed:undo:all"
   },
   "dependencies": {
     "sequelize-cli": "^6.5.1",

@@ -2,7 +2,7 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  const Outlets = sequelize.define('Outlets', {
+  const Outlet = sequelize.define('Outlet', {
     name: DataTypes.STRING,
 
     address: DataTypes.TEXT,
@@ -19,8 +19,12 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'outlets'
   })
 
-  Outlets.associate = function (models) {
+  Outlet.associate = function (models) {
+    Outlet.hasMany(models.IngredientOutlet, {
+      as: 'outletData',
+      foreignKey: 'outlet_id'
+    })
   }
 
-  return Outlets
+  return Outlet
 };
