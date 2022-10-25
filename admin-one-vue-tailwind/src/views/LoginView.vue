@@ -13,6 +13,7 @@ import BaseButtons from "@/components/BaseButtons.vue";
 import LayoutGuest from "@/layouts/LayoutGuest.vue";
 import Util from "@/util";
 
+import { useMainStore } from "@/stores/main";
 import { apiConfig } from "@/config.js";
 
 const form = reactive({
@@ -24,13 +25,13 @@ const form = reactive({
 const router = useRouter();
 
 const submit = async () => {
-  console.log("hello this is working", form);
   const login = form.login;
   const password = form.pass;
   const client = "express-client";
   const secret = "express-secret";
   var authorizationBasic = window.btoa(client + ":" + secret);
 
+  // console.log(useMainStore().loggedIn);
   axios
     .post(`${apiConfig.path}/oauth/token`,
       {
@@ -46,18 +47,29 @@ const submit = async () => {
         },
       }
     )
-    .then((res) => {
+    .then(async (res) => {
       if (res.status !== 200) {
-        throw new Error( // TODO: Handle error dynamically
+        throw new Error(
           "Invalid credentials, please make sure your store username or password are correct."
         );
       }
 
-      router.push("/dashboard");
+      const accessToken = res.data.access_token;
+      const expiresIn = res.data.access_token;
+      const refreshToken = res.data.access_token;
+
+      await useMainStore().setLoginState({
+        name: login,
+        email: login,
+        accessToken,
+        expiresIn,
+        refreshToken,
+      });
+      router.push("/");
     })
     .catch((error) => {
       const errorMessage = Util.ParseError(error);
-      alert(errorMessage);
+      alert(errorMessage.message);
     });
 };
 </script>
@@ -95,7 +107,6 @@ const submit = async () => {
         <template #footer>
           <BaseButtons>
             <BaseButton type="submit" color="info" label="Login" />
-            <BaseButton to="/dashboard" color="info" outline label="Back" />
           </BaseButtons>
         </template>
       </CardBox>

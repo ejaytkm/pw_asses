@@ -66,11 +66,15 @@ module.exports.getRefreshToken = function (refreshToken) {
 module.exports.getUser = function (username, password) {
   return OAuthUsersModel.findOne({ where: { username: username } })
     .then((user) => {
+      if (!user) {
+        throw new Error("Sorry, your login or password credentials are incorrect. Please try again with the correct input or contact assistance.")
+      }
+
       const isMatch = bcrypt.compareSync(password, user.get().password);
       if (isMatch) {
         return user.get();
       } else {
-        console.error("Password not match");
+        throw new Error("Sorry, your login or password credentials are incorrect. Please try again with the correct input or contact assistance.")
       }
     });
 };

@@ -14,12 +14,15 @@
 - ROLES user_outlets =
 - ROLES ingredients_outlets =
 - GPRAHL VALIDATIONS =
-- GPRAHL VALIDATIONS =
+- GPRAHL VALIDATIONS =a
 - API to admin to create new user = [ADMIN] or [SCRIPT-GENERATOR] - seeder to generate new admin
 - ~~SEEDER - outlets [hard coded into the system] =~~
+
+- THINK ABOUT HTTPS COOKIES
+
 cv
 ## FRONTEND
-- LOGIN page = ANY-USER
+~~- LOGIN page = ANY-USER~~
 - SIGNUP page = please wait for your respective manager to assign you
 - CRUD - INGREDIENTS page = admin [>create], manager [>update amount], user [view]
 - CRUD - OUTLETS page = Admin can add outlets? admin can assign a manager to an outlet to location - implement GOOGLE_MAPS_API

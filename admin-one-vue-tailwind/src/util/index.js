@@ -1,8 +1,24 @@
 const util = { // util object
-  ParseError: (error) => {
-    console.log("@ParseError", error);
+  ParseError: (errMsg) => {
+    // [GENERAL]
+    if (errMsg.response.data.error && errMsg.response.data.error_description) {
+      return {
+        status: errMsg.response.status,
+        code: errMsg.code,
+        message: errMsg.response.data.error_description,
+      };
+    }
 
-    return "Sorry there seems to be an unexpected error, we're unable to process your request. Please try again later.";
+    // [AUTHS]
+    // [GRAPHQL]
+    // [EXPRESS-API]
+
+    return {
+      status: 405,
+      code: "UNEXPECTEDE_UNHANDLED_ERROR",
+      message:
+        "Sorry there seems to be an unexpected error, we're unable to process your request. Please try again later.",
+    };
   },
 };
 

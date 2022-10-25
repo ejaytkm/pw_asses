@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Style from "@/views/StyleView.vue";
 import Home from "@/views/HomeView.vue";
+import { useMainStore } from "@/stores/main";
 
 const routes = [
   {
     meta: {
       title: "Select style",
     },
-    path: "/",
+    path: "/style",
     name: "style",
     component: Style,
   },
@@ -17,7 +18,7 @@ const routes = [
     meta: {
       title: "PW",
     },
-    path: "/dashboard",
+    path: "/",
     name: "dashboard",
     component: Home,
   },
@@ -85,6 +86,33 @@ const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
     return savedPosition || { top: 0 };
   },
+});
+
+router.beforeEach(async (to, from, next) => {
+  const appLoggedIn = await useMainStore().getLoginState;
+
+  // LoggedIn? - Check authenticity of token
+  // console.log("Loggin app login ", appLoggedIn);
+
+  if (appLoggedIn) {
+    const validToken = await useMainStore().fetchCheckAuth();
+
+    if (!validToken) {
+      await useMainStore().setLogoutState();
+      return next("login");
+    }
+
+    if (to.path === "/login") {
+      return next("/");
+    }
+  }
+
+  next();
+});
+
+router.afterEach(() => {
+  // Can be used to remove loading or additional other checks dynamically for all pages
+  // console.log("Logging router after each async");
 });
 
 export default router;

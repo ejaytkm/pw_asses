@@ -22,7 +22,7 @@ import CardBoxTransaction from "@/components/CardBoxTransaction.vue";
 import CardBoxClient from "@/components/CardBoxClient.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
-import SectionBannerStarOnGitHub from "@/components/SectionBannerStarOnGitHub.vue";
+// import SectionBannerStarOnGitHub from "@/components/SectionBannerStarOnGitHub.vue";
 
 const chartData = ref(null);
 
@@ -49,7 +49,7 @@ const transactionBarItems = computed(() => mainStore.history);
         title="Overview"
         main
       >
-        <BaseButton
+        <!-- <BaseButton
           href="https://github.com/justboil/admin-one-vue-tailwind"
           target="_blank"
           :icon="mdiGithub"
@@ -57,7 +57,7 @@ const transactionBarItems = computed(() => mainStore.history);
           color="contrast"
           rounded-full
           small
-        />
+        /> -->
       </SectionTitleLineWithButton>
 
       <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">
@@ -114,7 +114,7 @@ const transactionBarItems = computed(() => mainStore.history);
         </div>
       </div>
 
-      <SectionBannerStarOnGitHub class="mt-6 mb-6" />
+      <!-- <SectionBannerStarOnGitHub class="mt-6 mb-6" /> -->
 
       <SectionTitleLineWithButton :icon="mdiChartPie" title="Trends overview">
         <BaseButton
