@@ -1,7 +1,8 @@
 <script setup>
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import { mdiAccount, mdiAsterisk } from "@mdi/js";
+import { mdiAccount, mdiAsterisk, mdiLayersTriple } from "@mdi/js";
+import axios from "axios";
 import SectionFullScreen from "@/components/SectionFullScreen.vue";
 import CardBox from "@/components/CardBox.vue";
 import FormCheckRadio from "@/components/FormCheckRadio.vue";
@@ -10,17 +11,54 @@ import FormControl from "@/components/FormControl.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
 import LayoutGuest from "@/layouts/LayoutGuest.vue";
+import Util from "@/util";
+
+import { apiConfig } from "@/config.js";
 
 const form = reactive({
-  login: "john.doe",
-  pass: "highly-secure-password-fYjUw-",
+  login: "",
+  pass: "",
   remember: true,
 });
 
 const router = useRouter();
 
-const submit = () => {
-  router.push("/dashboard");
+const submit = async () => {
+  console.log("hello this is working", form);
+  const login = form.login;
+  const password = form.pass;
+  const client = "express-client";
+  const secret = "express-secret";
+  var authorizationBasic = window.btoa(client + ":" + secret);
+
+  axios
+    .post(`${apiConfig.path}/oauth/token`,
+      {
+        username: login,
+        grant_type: "password",
+        password: password,
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: "Basic " + authorizationBasic,
+        },
+      }
+    )
+    .then((res) => {
+      if (res.status !== 200) {
+        throw new Error( // TODO: Handle error dynamically
+          "Invalid credentials, please make sure your store username or password are correct."
+        );
+      }
+
+      router.push("/dashboard");
+    })
+    .catch((error) => {
+      const errorMessage = Util.ParseError(error);
+      alert(errorMessage);
+    });
 };
 </script>
 

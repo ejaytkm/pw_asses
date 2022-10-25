@@ -19,14 +19,17 @@
 - ~~SEEDER - outlets [hard coded into the system] =~~
 cv
 ## FRONTEND
-- SIGNUP page = please wait for your respective manager to assign you
 - LOGIN page = ANY-USER
+- SIGNUP page = please wait for your respective manager to assign you
 - CRUD - INGREDIENTS page = admin [>create], manager [>update amount], user [view]
 - CRUD - OUTLETS page = Admin can add outlets? admin can assign a manager to an outlet to location - implement GOOGLE_MAPS_API
 - CRUD - USER_OUTLET page
 - CRUD - INGREDIENT_OUTPAGE page
 ================================== (back to backend, complete "ROLES")
 - Handle error messages for ROLES
+
+## DEPLOY AND SUBMIT
+-
 
 
 ## TOUCHUPS

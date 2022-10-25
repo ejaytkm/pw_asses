@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const logger = require('./utils/logger')
 const bodyParser = require('body-parser')
+const cors = require('cors');
 
 // Graphql
 const server = require('./graphql')
@@ -24,6 +25,9 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(cors({
+  origin: "*"
+}));
 
 app.use('/', indexRouter)
 
