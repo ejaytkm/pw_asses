@@ -2,7 +2,8 @@ import {
   mdiMonitor,
   mdiStore,
   mdiBlender,
-  mdiAccountGroup
+  mdiAccountGroup,
+  mdiCog
 } from "@mdi/js";
 
 export default [
@@ -25,7 +26,7 @@ export default [
     to: "/users",
     label: "Users",
     icon: mdiAccountGroup,
-  },
+  }
   // {
   //   to: "/error",
   //   label: "Error",

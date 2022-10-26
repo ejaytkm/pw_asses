@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Style from "@/views/StyleView.vue";
 import Home from "@/views/HomeView.vue";
 import { useMainStore } from "@/stores/main";
+import { mdiNoteText } from "@mdi/js";
 
 const routes = [
   {
@@ -118,9 +119,36 @@ router.beforeEach(async (to, from, next) => {
       return next("login");
     }
 
+    await useMainStore().getAccountDetails();
+
     if (to.path === "/login") {
       return next("/");
     }
+  }
+
+  // Employess = Manager or Basic
+  if (appLoggedIn && parseInt((useMainStore().getUserTypeId)) !== 1) {
+    await useMainStore().findAllocatedStore();
+    const outlet_id = useMainStore().getEmployeeOutlet;
+
+    if (!outlet_id) {
+      alert("Please wait till you have been asign an outlet by the manager or admin.");
+      await useMainStore().setLogoutState();
+      return next("login");
+    }
+
+    if (to.path === "/profile") {
+      return next();
+    }
+
+    if (
+      to.name !== "outlet-summary" ||
+      parseInt(to.params.id) !== parseInt(outlet_id)
+    ) {
+      return next(`/outlets/summary/${outlet_id}`);
+    }
+
+    return next();
   }
 
   next();

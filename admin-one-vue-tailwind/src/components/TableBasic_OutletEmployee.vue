@@ -1,6 +1,7 @@
 <script setup>
 import { reactive, computed, ref } from "vue";
 import { mdiCircleEditOutline, mdiTrashCan } from "@mdi/js";
+import { useMainStore } from "@/stores/main";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
@@ -209,6 +210,7 @@ const confirmUpdate = () => {
               @click="triggerEdit(data)"
             /> -->
             <BaseButton
+              v-if="useMainStore().getUserTypeId === 1"
               color="danger"
               :icon="mdiTrashCan"
               small

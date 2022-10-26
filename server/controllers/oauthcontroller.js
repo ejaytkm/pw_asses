@@ -35,7 +35,6 @@ module.exports.getClient = function (clientId, clientSecret) {
   return OAuthClientsModel.findOne({ where: { clientId: clientId, clientSecret: clientSecret }, raw: true });
 };
 
-
 module.exports.getRefreshToken = function (refreshToken) {
   return OAuthTokensModel.findOne(
     {

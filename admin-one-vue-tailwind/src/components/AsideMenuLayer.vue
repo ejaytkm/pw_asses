@@ -2,6 +2,7 @@
 import { mdiLogout, mdiClose } from "@mdi/js";
 import { computed } from "vue";
 import { useStyleStore } from "@/stores/style.js";
+import { useMainStore } from "@/stores/main.js";
 import AsideMenuList from "@/components/AsideMenuList.vue";
 import AsideMenuItem from "@/components/AsideMenuItem.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
@@ -49,7 +50,7 @@ const asideLgCloseClick = (event) => {
         <div
           class="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0"
         >
-          <b class="font-black">RESTAURANT CMS</b>
+          <a href="/"><b class="font-black">RESTAURANT CMS</b></a>
         </div>
         <button
           class="hidden lg:inline-block xl:hidden p-3"
@@ -66,7 +67,11 @@ const asideLgCloseClick = (event) => {
         "
         class="flex-1 overflow-y-auto overflow-x-hidden"
       >
-        <AsideMenuList :menu="menu" @menu-click="menuClick" />
+        <AsideMenuList
+          v-if="useMainStore().getUserTypeId === 1"
+          :menu="menu"
+          @menu-click="menuClick"
+        />
       </div>
 
       <ul>

@@ -44,6 +44,7 @@ const props = defineProps({
   borderless: Boolean,
   transparent: Boolean,
   ctrlKFocus: Boolean,
+  disabled: Boolean,
 });
 
 const emit = defineEmits(["update:modelValue", "setRef"]);
@@ -72,6 +73,9 @@ const inputElClass = computed(() => {
 });
 
 const computedType = computed(() => (props.options ? "select" : props.type));
+const computedDisabled = computed(() => {
+  return props.disabled;
+});
 
 const controlIconH = computed(() =>
   props.type === "textarea" ? "h-full" : "h-12"
@@ -127,6 +131,7 @@ if (props.ctrlKFocus) {
       v-if="computedType === 'select'"
       :id="id"
       v-model="computedValue"
+      :disabled="computedDisabled"
       :name="name"
       :class="inputElClass"
     >
@@ -142,6 +147,7 @@ if (props.ctrlKFocus) {
       v-else-if="computedType === 'textarea'"
       :id="id"
       v-model="computedValue"
+      :disabled="computedDisabled"
       :class="inputElClass"
       :name="name"
       :placeholder="placeholder"
@@ -152,6 +158,7 @@ if (props.ctrlKFocus) {
       :id="id"
       ref="inputEl"
       v-model="computedValue"
+      :disabled="disabled"
       :name="name"
       :inputmode="inputmode"
       :autocomplete="autocomplete"

@@ -9,6 +9,7 @@ import FormControl from "@/components/FormControl.vue";
 import FormField from "@/components/FormField.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import moment from "moment";
+import { useMainStore } from "@/stores/main";
 
 const props = defineProps({
   checkable: Boolean,
@@ -193,12 +194,14 @@ const confirmUpdate = () => {
         <td class="before:hidden lg:w-1 whitespace-nowrap">
           <BaseButtons type="justify-start lg:justify-end" no-wrap>
             <BaseButton
+              v-if="useMainStore().getUserTypeId !== 3"
               color="info"
               :icon="mdiCircleEditOutline"
               small
               @click="triggerEdit(data)"
             />
             <BaseButton
+              v-if="useMainStore().getUserTypeId === 1"
               color="danger"
               :icon="mdiTrashCan"
               small

@@ -39,6 +39,8 @@ const mainStore = useMainStore();
 const clientBarItems = computed(() => mainStore.clients.slice(0, 4));
 
 const transactionBarItems = computed(() => mainStore.history);
+
+console.log("@mainStore ", mainStore);
 </script>
 
 <template>

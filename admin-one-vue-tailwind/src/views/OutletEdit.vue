@@ -21,7 +21,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
-// import TableSampleClients from "@/components/TableSampleClients.vue";
+import { useMainStore } from "@/stores/main";
 import Util from "@/util";
 
 import TableOutletIngredient from "@/components/TableBasic_OutletIngredient.vue";
@@ -390,7 +390,7 @@ const getOutletIngredient = () => {
     .then((res) => {
       if (res.status !== 200) {
         throw new Error(
-          "Error in retrieving outlet summary. Please try again later"
+          "Error in retrieving outlet ingredient data. Please try again later"
         );
       }
 
@@ -660,7 +660,7 @@ const getOutletUser = () => {
     .then((res) => {
       if (res.status !== 200) {
         throw new Error(
-          "Error in retrieving outlet summary. Please try again later"
+          "Error in retrieving outlet employees data. Please try again later"
         );
       }
 
@@ -763,7 +763,10 @@ const deleteOutletUser = (entryId) => {
       buttonLabel="Add"
       @confirm="createOutletUser"
     >
-      <FormField label="Employee Username" help="Username that the employee uses to login the system. Please contact assistance if one has not been created yet">
+      <FormField
+        label="Employee Username"
+        help="Username that the employee uses to login the system. Please contact assistance if one has not been created yet"
+      >
         <FormControl type="text" v-model="formOutletUser.createForm.employeeUsername" placeholder="employeeMoonPenny@worker1" />
       </FormField>
       <BaseDivider />
@@ -780,17 +783,24 @@ const deleteOutletUser = (entryId) => {
 
       <CardBox formOutlet>
         <FormField label="Name of Outlet">
-          <FormControl v-model="formOutlet.name" type="tel" placeholder=""/>
+          <FormControl
+            v-model="formOutlet.name"
+            type="text"
+            placeholder=""
+            :disabled="useMainStore().getUserTypeId != 1"
+          />
         </FormField>
 
         <FormField label="Coordinates - Long X, Lat Y">
           <FormControl
             v-model="formOutlet.coordinate_x"
+            :disabled="useMainStore().getUserTypeId != 1"
             type="number"
             :icon="mdiCompassOutline"
           />
           <FormControl
             v-model="formOutlet.coordinate_y"
+            :disabled="useMainStore().getUserTypeId != 1"
             type="number"
             :icon="mdiCompassOutline"
           />
@@ -809,10 +819,10 @@ const deleteOutletUser = (entryId) => {
         </FormField> -->
 
         <FormField label="Address" help="Please choose select a proper address">
-          <FormControl v-model="formOutlet.address" type="textarea"/>
+          <FormControl :disabled="useMainStore().getUserTypeId != 1" v-model="formOutlet.address" type="textarea"/>
         </FormField>
 
-        <template #footer>
+        <template #footer v-if="useMainStore().getUserTypeId == 1">
           <BaseButtons>
             <BaseButton
               type="submit"
@@ -839,6 +849,7 @@ const deleteOutletUser = (entryId) => {
       >
         <div>
           <BaseButton
+            v-if="useMainStore().getUserTypeId === 1"
             :icon="mdiPlaylistPlus"
             color="warning"
             style="margin-right: 10px"
@@ -872,6 +883,7 @@ const deleteOutletUser = (entryId) => {
       >
         <div>
           <BaseButton
+            v-if="useMainStore().getUserTypeId === 1"
             :icon="mdiPlaylistPlus"
             color="warning"
             style="margin-right: 10px"

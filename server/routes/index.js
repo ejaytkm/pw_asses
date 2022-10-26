@@ -14,8 +14,11 @@ router.get('/', function (req, res, next) {
 
 router.post('/oauth/token', async (req, res, next) => {
     // TODO: Check user exist in out system
+    console.log("TODO: ", req.body.username)
+
     next()
 }, router.oauth.token());
+
 router.post('/oauth/set_client', function (req, res, next) {
     OauthController.setClient(req.body)
         .then((client) => res.json(client))
@@ -23,6 +26,7 @@ router.post('/oauth/set_client', function (req, res, next) {
             return next(error);
         });
 });
+
 router.post('/oauth/signup', function (req, res, next) {
     OauthController.setUser(req.body)
         .then((user) => res.json(user))

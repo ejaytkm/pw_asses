@@ -48,10 +48,23 @@ const componentClass = computed(() => {
 });
 
 const itemLabel = computed(() =>
-  props.item.isCurrentUser ? useMainStore().userName : props.item.label
+  props.item.isCurrentUser ? `${useMainStore().userName} - ${returnUserType(useMainStore().getUserTypeId)}` : props.item.label
 );
 
 const isDropdownActive = ref(false);
+
+const returnUserType = (user_type_id) => {
+  switch (parseInt(user_type_id)) {
+    case 1:
+      return "Admin";
+    case 2:
+      return "Store Manager";
+    case 3:
+      return "Store Employee";
+    default:
+      return "-";
+  };
+}
 
 const menuClick = (event) => {
   emit("menu-click", event, props.item);

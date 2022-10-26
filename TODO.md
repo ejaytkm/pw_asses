@@ -20,19 +20,14 @@
 
 ## FRONTEND
 TIP:
-> (ADMIN doesn't belong to any Outlet)
-> (ADMIN has main control over everything)
-> (1 MANAGER belongs to 1 Outlet) | (1 B.EMPLOYEE belongs to 1 Outlet)
-> (MANGER OR B.EMPLOYEE can only edit outlets associations with ingredients or users)
-
 - ~~LOGIN page = ANY-USER~~
 - ~~[CRUD] ADMIN - INGREDIENTS LISTING = admin~~ WIP: Edit Ingredient
 - ~~[CREATE READ DELETE] ADMIN - OUTLETS LIST - ADMIN can CREATE outlets~~
 - ~~[OUTLET_INGREDIENTS] CAN ADD INGREDIENTS TO ANY OUTLETS~~
 - ~~[OUTLET_INGREDIENTS] ADMIN can assign a manager to an outlet~~
-- [OUTLET_INGREDIENTS] ADMIN page - Specifically for CREATING, UPDATING, DELETING user & their user types
-- [UPDATE] STORE MANAGER - OUTLET ENTRY [>update amount (@STORE**)**],
-- [READ] EMPLOYEES - [view]
+- ~~[OUTLET_INGREDIENTS] ADMIN page - Specifically for CREATING, UPDATING, DELETING user & their user types~~
+- ~~[UPDATE] STORE MANAGER - OUTLET ENTRY [>update amount (@STORE)]~~
+- ~~[READ] EMPLOYEES - [view]~~
 ================================== (back to backend, complete "ROLES")
 - ADD TOAST to applications
 - Handle error messages for ROLES
