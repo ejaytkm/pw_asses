@@ -38,8 +38,6 @@ module.exports = class AbstractQueryService {
     this.validateInfo(info);
     let assocAndAttr = await this.getAsocAndAttributes(info, this._arrAssociateQuery);
 
-    console.log("@getAll ", assocAndAttr.includes)
-
     return await this._objModels[this._strModelName].findAndCountAll({
       where     : filterParam.filter,
       offset    : filterParam.offset,
@@ -65,6 +63,8 @@ module.exports = class AbstractQueryService {
    * ------------------------------------
    */
   getEagerLoad (strAssocModelName, strAssocModelNameAlias, arrAttributes) {
+    // console.log(strAssocModelName, arrAttributes)
+
     return {
       model: this._objModels[strAssocModelName],
       as: strAssocModelNameAlias,
@@ -79,23 +79,28 @@ module.exports = class AbstractQueryService {
     const queryFields = await objOptQueryServ.getQueryFields()
     const includes = []
 
-    // console.log("@getAsocAndAttributes", arrAssocModelName)
+    // console.log("queryFields", queryFields)
 
     for (let i = 0; i < arrAssocModelName.length; i++) {
-      const assocModelName = arrAssocModelName[i].modelName
+      let assocModelName = arrAssocModelName[i].modelName
       const assocModelNameAlias = arrAssocModelName[i].modelNameAlias
 
+      // console.log("@@@", assocModelName)
+      // if (assocModelName === 'User') {
+      //   let assocModelName = 'OAuthUsers'
+      // }
+
       if (_.has(queryFields, assocModelNameAlias)) {
+        // if (queryFields.userData && queryFields.userData.name === 'userData') {
+        //   console.log("@@@queryFields", queryFields.userData.fieldsByTypeName);
+        // }
+
         const assocAttributes = await objOptQueryServ.getSubModelAttributes(queryFields, assocModelName, assocModelNameAlias)
-        console.log('@assocAttributes', assocAttributes)
 
         if (assocAttributes !== null) {
           includes.push(await this.getEagerLoad(assocModelName, assocModelNameAlias, assocAttributes))
         }
       }
-
-      // console.log("@test", queryFields);
-      // console.log("@test", assocModelNameAlias);
     }
 
     return {

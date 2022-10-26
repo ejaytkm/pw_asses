@@ -15,6 +15,7 @@ const routes = [
   {
     // Document title tag
     // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
+    // [Common] pages
     meta: {
       title: "PW",
     },
@@ -24,43 +25,11 @@ const routes = [
   },
   {
     meta: {
-      title: "Tables",
-    },
-    path: "/tables",
-    name: "tables",
-    component: () => import("@/views/TablesView.vue"),
-  },
-  {
-    meta: {
-      title: "Forms",
-    },
-    path: "/forms",
-    name: "forms",
-    component: () => import("@/views/FormsView.vue"),
-  },
-  {
-    meta: {
       title: "Profile",
     },
     path: "/profile",
     name: "profile",
     component: () => import("@/views/ProfileView.vue"),
-  },
-  {
-    meta: {
-      title: "Ui",
-    },
-    path: "/ui",
-    name: "ui",
-    component: () => import("@/views/UiView.vue"),
-  },
-  {
-    meta: {
-      title: "Responsive layout",
-    },
-    path: "/responsive",
-    name: "responsive",
-    component: () => import("@/views/ResponsiveView.vue"),
   },
   {
     meta: {
@@ -78,6 +47,41 @@ const routes = [
     name: "error",
     component: () => import("@/views/ErrorView.vue"),
   },
+
+  // [Application] pages
+  {
+    meta: {
+      title: "Ingredients",
+    },
+    path: "/ingredients",
+    name: "ingredients",
+    component: () => import("@/views/IngredientView.vue"),
+  },
+  {
+    meta: {
+      title: "Ingredient Edit",
+    },
+    path: "/ingredient/edit",
+    name: "ingredient-edit",
+    component: () => import("@/views/IngredientEdit.vue"),
+  },
+
+  {
+    meta: {
+      title: "Outlets",
+    },
+    path: "/outlets",
+    name: "outlets",
+    component: () => import("@/views/OutletView.vue"),
+  },
+  {
+    meta: {
+      title: "Outlet Summary",
+    },
+    path: "/outlets/summary/:id",
+    name: "outlet-summary",
+    component: () => import("@/views/OutletEdit.vue"),
+  },
 ];
 
 const router = createRouter({
@@ -91,9 +95,12 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const appLoggedIn = await useMainStore().getLoginState;
 
-  // LoggedIn? - Check authenticity of token
-  // console.log("Loggin app login ", appLoggedIn);
+  // Going to somewhere - unauthenticated
+  if (!appLoggedIn && to.name !== "login") {
+    return next("login");
+  }
 
+  // LoggedIn? - Check authenticity of token
   if (appLoggedIn) {
     const validToken = await useMainStore().fetchCheckAuth();
 

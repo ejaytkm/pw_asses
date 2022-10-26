@@ -4,6 +4,7 @@ type User {
   username: String,
   password: String,
   name: String,
+  user_type_id: String,
 
   updatedAt: String,
   createdAt: String,

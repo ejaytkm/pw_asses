@@ -13,31 +13,41 @@
 - ROLES outlets =
 - ROLES user_outlets =
 - ROLES ingredients_outlets =
-- GPRAHL VALIDATIONS =
-- GPRAHL VALIDATIONS =a
+- GPRAHL VALIDATIONS = USER_OUTLETS (CREATE) - no duplications
+- GPRAHL VALIDATIONS = USER_INGREDIENTS (CREATE) - no duplications
 - API to admin to create new user = [ADMIN] or [SCRIPT-GENERATOR] - seeder to generate new admin
 - ~~SEEDER - outlets [hard coded into the system] =~~
 
-- THINK ABOUT HTTPS COOKIES
-
-cv
 ## FRONTEND
-~~- LOGIN page = ANY-USER~~
-- SIGNUP page = please wait for your respective manager to assign you
-- CRUD - INGREDIENTS page = admin [>create], manager [>update amount], user [view]
-- CRUD - OUTLETS page = Admin can add outlets? admin can assign a manager to an outlet to location - implement GOOGLE_MAPS_API
-- CRUD - USER_OUTLET page
-- CRUD - INGREDIENT_OUTPAGE page
+TIP:
+> (ADMIN doesn't belong to any Outlet)
+> (ADMIN has main control over everything)
+> (1 MANAGER belongs to 1 Outlet) | (1 B.EMPLOYEE belongs to 1 Outlet)
+> (MANGER OR B.EMPLOYEE can only edit outlets associations with ingredients or users)
+
+- ~~LOGIN page = ANY-USER~~
+- ~~[CRUD] ADMIN - INGREDIENTS LISTING = admin~~ WIP: Edit Ingredient
+- ~~[CREATE READ DELETE] ADMIN - OUTLETS LIST - ADMIN can CREATE outlets~~
+- ~~[OUTLET_INGREDIENTS] CAN ADD INGREDIENTS TO ANY OUTLETS~~
+- ~~[OUTLET_INGREDIENTS] ADMIN can assign a manager to an outlet~~
+- [OUTLET_INGREDIENTS] ADMIN page - Specifically for CREATING, UPDATING, DELETING user & their user types
+- [UPDATE] STORE MANAGER - OUTLET ENTRY [>update amount (@STORE)],
+- [READ] EMPLOYEES - [view]
 ================================== (back to backend, complete "ROLES")
 - Handle error messages for ROLES
+- SIGNUP page = please wait for your respective manager to assign you
 
 ## DEPLOY AND SUBMIT
--
 
 
-## TOUCHUPS
+## POST
 - Touch up read.me following community standards
-- -
+- Backend validations on CREATE,UPDATE,DELETE
+- VALIDATIONS - ingredient name, no duplication in ingredient table
+- Add toast of success messages
+- THINK ABOUT HTTPS COOKIES
+- Add Create validations in backend
+- Review CREATE pop up models, must have some form of validations
 
 ## Important
 - DEPLOY BEFORE 11:49PM

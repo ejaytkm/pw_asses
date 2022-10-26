@@ -5,8 +5,8 @@ module.exports = class UserOutletService extends AbstractQueryService {
     const modelName = 'UserOutlet'
     const arrAssociateQuery = [
       {
-        modelName: 'User',
-        modelNameAlias: 'UserData'
+        modelName: 'OAuthUsers',
+        modelNameAlias: 'userData'
       },
       {
         modelName: 'Outlet',

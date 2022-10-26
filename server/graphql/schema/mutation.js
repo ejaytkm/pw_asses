@@ -13,7 +13,7 @@ type Mutation {
 
 
   createOutlet(
-    input: OutletInput!
+    input: OutletInputCreate!
   ): Outlet!
   updateOutlet(
     filter: OutletFilterInput,

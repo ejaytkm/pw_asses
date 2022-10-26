@@ -3,6 +3,7 @@ const {
   parseResolveInfo,
   simplifyParsedResolveInfoFragmentWithType
 } = require('graphql-parse-resolve-info')
+const { QueryError } = require('sequelize')
 
 class OptimizeQueryService {
   constructor (graphqlQueryInfo, modelName) {
@@ -28,20 +29,17 @@ class OptimizeQueryService {
   }
 
   getSubModelQueryField (subQueryFields, subModelName, subModelNameAlias) {
-    console.log(
-      "getSubModelQueryField",
-      subQueryFields[subModelNameAlias],
-      subModelName
-    )
+    if (subModelName === "OAuthUsers") { // BUG: HARD CODED BUG - TECH DEBT TO FIX USER RELATION MODEL
+      return subQueryFields[subModelNameAlias].fieldsByTypeName["User"]
+    }
 
     return subQueryFields[subModelNameAlias].fieldsByTypeName[subModelName]
   }
 
   getSubModelAttributes (subQueryFields, subModelName, subModelNameAlias) {
+    // console.log("subModelName", subModelName, subQueryFields, subModelNameAlias)
     if (_.has(subQueryFields, subModelNameAlias)) {
       const queryFields = this.getSubModelQueryField(subQueryFields, subModelName, subModelNameAlias)
-
-      // console.log("SUB-queryFields", queryFields)
 
       return this.getFields(queryFields)
     }
@@ -50,9 +48,8 @@ class OptimizeQueryService {
   }
 
   getFields (queryFields) {
-    // console.log(queryFields)
-
     const attributes = []
+
     for (const key in queryFields) {
       const field = queryFields[key]
       if (_.isEmpty(field.fieldsByTypeName)) {

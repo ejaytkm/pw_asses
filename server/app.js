@@ -14,7 +14,10 @@ const indexRouter = require('./routes/index')
 
 const app = express()
 
-server.applyMiddleware({ app })
+server.applyMiddleware({
+  app,
+  path: '/api/graphql',
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))

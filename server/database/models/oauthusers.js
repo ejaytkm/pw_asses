@@ -16,18 +16,29 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   };
+
   OAuthUsers.init({
     username: DataTypes.STRING,
     password: DataTypes.STRING,
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    user_type_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'OAuthUsers',
   });
+
   OAuthUsers.beforeSave((user) => {
     if (user.changed('password')) {
       user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
     }
   });
+
+  OAuthUsers.associate = function (models) {
+    OAuthUsers.hasMany(models.UserOutlet, {
+      foreignKey: 'user_id',
+      as: 'userData',
+    })
+  }
+
   return OAuthUsers;
 };

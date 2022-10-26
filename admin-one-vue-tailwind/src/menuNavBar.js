@@ -6,6 +6,7 @@ import {
   mdiAccount,
   mdiCogOutline,
   mdiEmail,
+  mdiPalette,
   mdiLogout,
   mdiThemeLightDark,
   mdiGithub,
@@ -46,10 +47,11 @@ export default [
       //   icon: mdiCogOutline,
       //   label: "Settings",
       // },
-      // {
-      //   icon: mdiEmail,
-      //   label: "Messages",
-      // },
+      {
+        icon: mdiPalette,
+        to: "/style",
+        label: "Styles",
+      },
       {
         isDivider: true,
       },

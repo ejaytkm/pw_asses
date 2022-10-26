@@ -8,7 +8,7 @@ const year = new Date().getFullYear();
 
 <template>
   <footer class="py-2 px-6" :class="containerMaxW">
-    <BaseLevel>
+    <!-- <BaseLevel>
       <div class="text-center md:text-left">
         <b
           >&copy;{{ year }},
@@ -21,6 +21,6 @@ const year = new Date().getFullYear();
           <JustboilLogo class="w-auto h-8 md:h-6" />
         </a>
       </div>
-    </BaseLevel>
+    </BaseLevel> -->
   </footer>
 </template>

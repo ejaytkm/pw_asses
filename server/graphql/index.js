@@ -33,6 +33,7 @@ module.exports = new ApolloServer({
       'editor.theme': 'dark'
     }
   },
+  playground: false,
   formatError: error => {
     if (error.message.startsWith('Database Error: ')) {
       return new ApolloError('Internal server error')

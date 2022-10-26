@@ -76,8 +76,6 @@ module.exports = {
     const serv = new UserOutletService(models)
     return await serv.getAll(filterParam, info)
       .then((filteredData) => {
-        // console.log("@filteredData", filteredData.rows[0])
-
         return {
           rows: filteredData.rows,
           total: filteredData.count,

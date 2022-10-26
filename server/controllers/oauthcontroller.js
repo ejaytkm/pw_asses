@@ -103,11 +103,11 @@ module.exports.saveToken = function (token, client, user) {
 };
 
 module.exports.revokeToken = function (token) {
-  console.log("Revoke token");
+  // console.log("Revoke token");
   return OAuthTokensModel
     .findOne({ where: { refreshToken: token.refreshToken } })
     .then(refreshToken => {
-      console.log(refreshToken);
+      // console.log(refreshToken);
       return refreshToken
         .destroy()
         .then(() => {

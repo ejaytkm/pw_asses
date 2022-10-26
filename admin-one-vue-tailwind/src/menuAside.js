@@ -1,60 +1,25 @@
 import {
-  mdiAccountCircle,
   mdiMonitor,
-  mdiGithub,
-  mdiLock,
-  mdiAlertCircle,
-  mdiSquareEditOutline,
-  mdiTable,
-  mdiViewList,
-  mdiTelevisionGuide,
-  mdiResponsive,
-  mdiPalette,
-  mdiReact,
-  mdiCogOutline,
+  mdiStore,
+  mdiBlender,
 } from "@mdi/js";
 
 export default [
   {
     to: "/",
-    icon: mdiMonitor,
     label: "Overview",
-  },
-  // {
-  //   to: "/tables",
-  //   label: "Tables",
-  //   icon: mdiTable,
-  // },
-  // {
-  //   to: "/forms",
-  //   label: "Forms",
-  //   icon: mdiSquareEditOutline,
-  // },
-  // {
-  //   to: "/ui",
-  //   label: "UI",
-  //   icon: mdiTelevisionGuide,
-  // },
-  // {
-  //   to: "/responsive",
-  //   label: "Responsive",
-  //   icon: mdiResponsive,
-  // },
-  {
-    to: "/profile",
-    label: "Settings",
-    icon: mdiCogOutline,
+    icon: mdiMonitor,
   },
   {
-    to: "/style",
-    label: "Styles",
-    icon: mdiPalette,
+    to: "/ingredients",
+    label: "Ingredients",
+    icon: mdiBlender,
   },
-  // {
-  //   to: "/login",
-  //   label: "Login",
-  //   icon: mdiLock,
-  // },
+  {
+    to: "/outlets",
+    label: "Outlets",
+    icon: mdiStore,
+  },
   // {
   //   to: "/error",
   //   label: "Error",
@@ -66,6 +31,7 @@ export default [
   //   menu: [
   //     {
   //       label: "Item One",
+  //       icon: mdiPalette,
   //     },
   //     {
   //       label: "Item Two",
@@ -76,12 +42,6 @@ export default [
   //   href: "https://github.com/justboil/admin-one-vue-tailwind",
   //   label: "GitHub",
   //   icon: mdiGithub,
-  //   target: "_blank",
-  // },
-  // {
-  //   href: "https://github.com/justboil/admin-one-react-tailwind",
-  //   label: "React version",
-  //   icon: mdiReact,
   //   target: "_blank",
   // },
 ];
