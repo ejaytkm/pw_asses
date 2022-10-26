@@ -37,13 +37,16 @@ input UserFilterInput {
   id: StringFilterInput,
 
   username: StringFilterInput,
-  passwords: StringFilterInput,
   name: StringFilterInput,
   user_type_id: StringFilterInput,
 
   deleted_at: StringFilterInput,
   updated_at: StringFilterInput,
   created_at: StringFilterInput,
+}
+
+input UserDeleteFilterInput {
+  id: StringFilterInput!,
 }
 
 input IngredientFilterInput {

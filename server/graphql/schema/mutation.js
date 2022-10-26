@@ -11,6 +11,13 @@ type Mutation {
     filter: IngredientDeleteFilterInput!,
   ): Ingredient!
 
+  updateUser(
+    filter: UserFilterInput,
+    input: UserInput!
+  ): User!
+  deleteUser(
+    filter: UserDeleteFilterInput!,
+  ): User!
 
   createOutlet(
     input: OutletInputCreate!

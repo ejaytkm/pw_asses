@@ -31,11 +31,12 @@ TIP:
 - ~~[OUTLET_INGREDIENTS] CAN ADD INGREDIENTS TO ANY OUTLETS~~
 - ~~[OUTLET_INGREDIENTS] ADMIN can assign a manager to an outlet~~
 - [OUTLET_INGREDIENTS] ADMIN page - Specifically for CREATING, UPDATING, DELETING user & their user types
-- [UPDATE] STORE MANAGER - OUTLET ENTRY [>update amount (@STORE)],
+- [UPDATE] STORE MANAGER - OUTLET ENTRY [>update amount (@STORE**)**],
 - [READ] EMPLOYEES - [view]
 ================================== (back to backend, complete "ROLES")
+- ADD TOAST to applications
 - Handle error messages for ROLES
-- SIGNUP page = please wait for your respective manager to assign you
+- [SIGNUP] = please wait for your respective manager to assign you
 
 ## DEPLOY AND SUBMIT
 

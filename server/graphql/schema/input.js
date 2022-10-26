@@ -1,4 +1,9 @@
 module.exports = `
+input UserInput {
+  name: String
+  user_type_id: Int
+}
+
 input IngredientInput {
   name: String
 

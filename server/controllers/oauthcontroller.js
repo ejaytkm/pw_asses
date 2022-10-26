@@ -143,7 +143,8 @@ module.exports.setUser = function (user) {
     .create({
       username: user.username,
       password: user.password,
-      name: user.name
+      name: user.name,
+      user_type_id: 3
     })
     .then((userResult) => {
       userResult = userResult && typeof userResult == 'object' ? userResult.toJSON() : userResult;

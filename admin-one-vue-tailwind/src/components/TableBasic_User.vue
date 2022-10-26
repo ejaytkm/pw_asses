@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, computed, ref } from "vue";
-import { mdiCircleEditOutline, mdiTrashCan } from "@mdi/js";
+import { mdiCircleEditOutline, mdiAccountRemove } from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseLevel from "@/components/BaseLevel.vue";
@@ -24,17 +24,24 @@ const items = computed(() => props.rows);
 const isModalActive = ref(false);
 const isModalDangerActive = ref(false);
 
+const selectOptions = [
+  { id: 3, label: "Store Employee" },
+  { id: 2, label: "Store Manager" },
+  { id: 1, label: "Admin" },
+];
+
 const deleteEntry = ref({
-  name: ""
+  id: "",
+  name: "",
+  username: "",
+  user_type_id: "",
 });
 
 const editEntry = reactive({
-  id: null,
-  outlet_id: null,
-  ingredient_id: null,
-  value: null,
-  json_value: null,
-  ingredientData: {},
+  id: "",
+  name: "",
+  username: "",
+  user_type_id: "",
 });
 
 const dataPerPage = computed(() => {
@@ -71,11 +78,11 @@ const pagesList = computed(() => {
 });
 
 const returnUserType = (data) => {
-  if (!data.userData && data.userData.user_type_id) {
+  if (!data && data.user_type_id) {
     return "Waiting Verfification";
   }
 
-  switch (parseInt(data.userData.user_type_id)) {
+  switch (parseInt(data.user_type_id)) {
     case 1:
       return "Admin";
     case 2:
@@ -111,18 +118,24 @@ const checked = (isChecked, client) => {
 };
 
 const triggerDelete = (entry) => {
+  if (parseInt(entry.user_type_id) === 1) {
+    return alert("Attempting to delete admins is not allowed");
+  }
+
   deleteEntry.value.id = entry.id;
-  deleteEntry.value.name = entry.userData.name;
+  deleteEntry.value.name = entry.name;
+  deleteEntry.value.username = entry.username;
+  deleteEntry.value.user_type_id = entry.user_type_id;
+
   isModalDangerActive.value = true;
 };
 
 const triggerEdit = (entry) => {
   editEntry.id = entry.id;
-  editEntry.outlet_id = entry.outlet_id;
-  editEntry.ingredient_id = entry.ingredient_id;
-  editEntry.value = entry.value;
-  editEntry.json_value = entry.json_value;
-  editEntry.ingredientData = entry.ingredientData;
+  editEntry.name = entry.name;
+  editEntry.username = entry.username;
+  editEntry.user_type_id = entry.user_type_id;
+  editEntry.userType = selectOptions.find((d) => d.id === parseInt(entry.user_type_id));
 
   isModalActive.value = true;
 };
@@ -144,20 +157,25 @@ const confirmUpdate = () => {
     @confirm="confirmUpdate"
   >
     <FormField label="Stock" help="Edit Stock">
-      <FormControl v-model="editEntry.value" type="number" placeholder="Please input valid number"/>
+      <FormControl v-model="editEntry.name" type="text" placeholder="Please choose a valid name"/>
+    </FormField>
+    <FormField label="Dropdown">
+      <FormControl v-model="editEntry.userType" :options="selectOptions" />
     </FormField>
   </CardBoxModal>
 
   <CardBoxModal
     v-model="isModalDangerActive"
-    title="Confirm Delete"
+    title="Delete User"
     button="danger"
     buttonLabel="Delete"
     has-cancel
     @confirm="confirmDelete"
   >
-    <p>Warning, are you sure you want to remove this employee from this outlet?</p>
-    <p>Employee: <b>{{ deleteEntry.name }}</b></p>
+    <p>Warning, please confirm your delete. User will still be in the system with <b>user employment type of NULL</b></p>
+    <p>Username: <b>{{ deleteEntry.username }}</b></p>
+    <p>Name: <b>{{ deleteEntry.name }}</b></p>
+    <p>Employee Type: <b>{{ returnUserType(deleteEntry) }}</b></p>
   </CardBoxModal>
 
   <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
@@ -174,7 +192,9 @@ const confirmUpdate = () => {
     <thead>
       <tr>
         <th v-if="checkable" />
-        <th>Employee Name</th>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Name</th>
         <th>Employee Type</th>
         <th>Created</th>
         <th>Updated</th>
@@ -184,33 +204,37 @@ const confirmUpdate = () => {
     <tbody>
       <tr v-for="data in itemsPaginated" :key="data.id">
         <TableCheckboxCell v-if="checkable" @checked="checked($event, data)" />
-        <td data-label="Employee Name">{{ data.userData ? data.userData.name : "Error: no name" }}</td>
-        <td data-label="Employee Type">{{ returnUserType(data) }}</td>
+        <td class="border-b-0 lg:w-6" data-label="Id">
+          {{ data.id }}
+        </td>
+        <td data-label="Name">{{ data.name ? data.name : "Yet to assign" }}</td>
+        <td data-label="Email">{{ data.username }}</td>
+        <td data-label="User Type">{{ returnUserType(data) }}</td>
         <td data-label="Created" class="lg:w-1 whitespace-nowrap">
           <small
             class="text-gray-500 dark:text-slate-400"
-            :title="data.created_at"
-          >{{ moment.unix(data.created_at/1000).format("DD/MM/YYYY HH:mm") }}
+            :title="data.createdAt"
+          >{{ moment.unix(data.createdAt/1000).format("DD/MM/YYYY HH:mm") }}
           </small>
         </td>
 
         <td data-label="UpdatedAt" class="lg:w-1 whitespace-nowrap">
           <small class="text-gray-500 dark:text-slate-400">
-            <span v-if="data.updated_at">{{ moment.unix(data.updated_at/1000).format("DD/MM/YYYY HH:mm") }}</span>
+            <span v-if="data.updatedAt">{{ moment.unix(data.updatedAt/1000).format("DD/MM/YYYY HH:mm") }}</span>
             <span v-else> - </span>
           </small>
         </td>
         <td class="before:hidden lg:w-1 whitespace-nowrap">
           <BaseButtons type="justify-start lg:justify-end" no-wrap>
-            <!-- <BaseButton
+            <BaseButton
               color="info"
               :icon="mdiCircleEditOutline"
               small
               @click="triggerEdit(data)"
-            /> -->
+            />
             <BaseButton
               color="danger"
-              :icon="mdiTrashCan"
+              :icon="mdiAccountRemove"
               small
               @click="triggerDelete(data)"
             />

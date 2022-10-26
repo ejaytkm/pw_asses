@@ -57,14 +57,14 @@ const routes = [
     name: "ingredients",
     component: () => import("@/views/IngredientView.vue"),
   },
-  {
-    meta: {
-      title: "Ingredient Edit",
-    },
-    path: "/ingredient/edit",
-    name: "ingredient-edit",
-    component: () => import("@/views/IngredientEdit.vue"),
-  },
+  // {
+  //   meta: {
+  //     title: "Ingredient Edit",
+  //   },
+  //   path: "/ingredient/edit",
+  //   name: "ingredient-edit",
+  //   component: () => import("@/views/IngredientEdit.vue"),
+  // },
 
   {
     meta: {
@@ -81,6 +81,15 @@ const routes = [
     path: "/outlets/summary/:id",
     name: "outlet-summary",
     component: () => import("@/views/OutletEdit.vue"),
+  },
+
+  {
+    meta: {
+      title: "Users",
+    },
+    path: "/users",
+    name: "users",
+    component: () => import("@/views/UserView.vue"),
   },
 ];
 

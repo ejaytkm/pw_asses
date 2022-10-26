@@ -5,6 +5,7 @@ const IngredientService = require('../../services/ingredient')
 const OutletService = require('../../services/outlet')
 const IngredientOutletService = require('../../services/ingredientoutlet')
 const UserOutletService = require('../../services/useroutlet')
+const UserService = require('../../services/user')
 
 const moment = require('moment-timezone')
 const { filter } = require('lodash')
@@ -12,6 +13,20 @@ const { filter } = require('lodash')
 moment.tz.setDefault('Etc/UTC')
 
 module.exports = {
+  updateUser: async (parent, args, { models }, info) => {
+    // Add additional security if necessary, for now - keeping in really accessible but based on ROLES
+    const filterParam 	= QueryFilter.filter(args)
+
+    const serv = new UserService(models)
+    return await serv.update(args.input, filterParam)
+      .then(filteredData => {
+        return filteredData[0]
+      })
+      .then(async (updateId) => {
+        return await serv.getOne(filterParam, info)
+      })
+  },
+
   // Ingredients
   createIngredient: async (parent, args, { models }, info) => {
     const { name } = args.input
